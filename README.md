@@ -1,2 +1,2 @@
-# registrasion-basic-templates
-Provides some basic templates for things in Registrasion, so that you get basic behaviour automatically.
+# symposion-bootstrap-templates
+Provides some customisable bootstrap templates for things in Symposion, so that you get basic behaviour automatically.
