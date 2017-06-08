@@ -1,0 +1,19 @@
+{% load bootstrap %}
+{% load i18n %}
+
+<div class="panel panel-primary">
+  <form method="POST" action="" enctype="multipart/form-data">
+    <div class="panel-body">
+      {% csrf_token %}
+      <fieldset>
+        {{ speaker_form|bootstrap }}
+      </fieldset>
+    </div>
+    <div class="panel-footer">
+      <div class="form-actions">
+        <input class="btn btn-primary" type="submit" value="Save" />
+        <a class="btn btn-default" href="{% url "dashboard" %}">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
