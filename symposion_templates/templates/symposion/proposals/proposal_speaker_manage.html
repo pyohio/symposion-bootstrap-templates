@@ -3,33 +3,51 @@
 {% load i18n %}
 {% load bootstrap %}
 
-{% block body %}
-    <h1>{% trans 'Proposal:' %} {{ proposal.title }}</h1>
+{% block title %}{% trans 'Proposal:' %} {{ proposal.title }}{% endblock %}
+{% block heading %}{% trans 'Proposal:' %} {{ proposal.title }}{% endblock %}
 
-    <p>
-      <a href="{% url "proposal_edit" proposal.pk %}">{% trans 'Edit proposal' %}
-      </a>
-    </p>
+{% block content %}
 
-    <h2>{% trans 'Current Speakers' %}</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">{% trans 'Current Speakers' %}</h2>
+    </div>
+    <ul class="list-group">
 
-    {% for speaker in speakers %}
-        {% if speaker.user %}
-            <p><b>{{ speaker.name }}</b> &mdash; {{ speaker.email }}</p>
-        {% else %}
-            <p>{{ speaker.email }} &mdash; {% trans 'pending invitation' %}</p>
-        {% endif %}
-    {% endfor %}
+      {% for speaker in speakers %}
+        <li class="list-group-item">
+          {% if speaker.user %}
+              <b>{{ speaker.name }}</b> &mdash; {{ speaker.email }}
+          {% else %}
+              {{ speaker.email }} &mdash; {% trans 'pending invitation' %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 
-    <h2>{% trans 'Add another speaker' %}</h2>
-
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title">{% trans 'Add another speaker' %}</h2>
+    </div>
     <form method="POST" action="" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ add_speaker_form|bootstrap }}
+      <div class="panel-body">
+          {% csrf_token %}
+          {{ add_speaker_form|bootstrap }}
+      </div>
+      <div class="panel-footer">
         <div class="form-action">
             <input type="submit" value="Add speaker" class="btn btn-primary" />
         </div>
+      </div>
     </form>
+  </div>
+
+  <div class="btn-group">
+    <a href="{% url "proposal_edit" proposal.pk %}" class="btn btn-default">{% trans 'Back to proposal details' %}
+    </a>
+  </div>
+
 {% endblock %}
 
 {% block extra_body %}

@@ -1,17 +1,20 @@
 {% extends "symposion/proposals/base.html" %}
 
+{% load i18n %}
 {% load bootstrap %}
 
-{% block page_title %}Upload Document to '{{ proposal.title }}'{% endblock %}
+{% block title %}Upload Document to '{{ proposal.title }}'{% endblock %}
+{% block heading %}Upload Document to '{{ proposal.title }}'{% endblock %}
 
-{% block body %}
-    <form method="POST" action="" enctype="multipart/form-data" class="form form-horizontal">
-        {% csrf_token %}
-        <fieldset>
-            {{ form|bootstrap_horizontal }}
-        </fieldset>
-        <div class="form-actions">
-            <input class="btn btn-primary" type="submit" value="Upload" />
-        </div>
-    </form>
+{% block content %}
+  <form method="POST" action="" enctype="multipart/form-data" class="form form-horizontal">
+    {% csrf_token %}
+    <fieldset>
+      {{ form|bootstrap }}
+    </fieldset>
+    <div class="form-actions">
+      <input class="btn btn-primary" type="submit" value="Upload" />
+      <a href="{% url "proposal_detail" proposal.pk %}" class="btn btn-default">{% trans 'Back to proposal details' %}</a>
+    </div>
+  </form>
 {% endblock %}

@@ -1,22 +1,37 @@
 {% extends "symposion/proposals/base.html" %}
 
 {% load bootstrap %}
+{% load i18n %}
 
-{% block head_title %}Editing {{ proposal.title }}{% endblock %}
+{% block title %}Editing {{ proposal.title }}{% endblock %}
+{% block heading %}Edit: {{ proposal.title }}{% endblock %}
 
-{% block body %}
-    <h1>Edit: {{ proposal.title }}</h1>
+{% block content %}
 
-    <p><a href="{% url "proposal_speaker_manage" proposal.pk %}">Manage speakers</a></p>
+  <!-- todo: this could be presented better. -->
+  <div class="btn-group">
+    <a href="{% url "proposal_speaker_manage" proposal.pk %}" class="btn btn-default">{% trans 'Manage speakers' %}</a>
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title">{% trans 'Proposal details' %}</h2>
+    </div>
 
     <form method="POST" action="" enctype="multipart/form-data">
+      <div class="panel-body">
         {% csrf_token %}
         <fieldset>
-            {{ form|bootstrap }}
+          {{ form|bootstrap }}
         </fieldset>
+      </div>
+      <div class="panel-footer">
+
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="Save" />
             <a class="btn btn-default" href="{% url "proposal_detail" proposal.pk %}">Cancel</a>
         </div>
+      </div>
     </form>
+  </div>
 {% endblock %}

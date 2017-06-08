@@ -1,20 +1,26 @@
 {% extends "symposion/proposals/base.html" %}
 
-{% load pinax_boxes_tags %}
 {% load i18n %}
 
-{% block page_title %}{% trans "Submit A Proposal" %}{% endblock %}
+{% block title %}{% trans "Submit A Proposal" %}{% endblock %}
+{% block heading %}{% trans "Submit A Proposal" %}{% endblock %}
+{% block lede %}{% endblock %}
 
-{% block body %}
-    {% box "proposal_submit" %}
+{% block content %}
 
-    {% if kinds %}
-        <p>Select what kind of proposal you'd like to submit:</p>
+  {% if kinds %}
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Select what kind of proposal you'd like to submit:
+      </div>
 
+      <div class="list-group">
         {% for kind in kinds %}
-            <a href="{% url "proposal_submit_kind" kind.slug %}" class="btn btn-default">{{ kind }}</a>
+          <a href="{% url "proposal_submit_kind" kind.slug %}" class="list-group-item">{{ kind }}</a>
         {% endfor %}
-    {% else %}
-        <p>Proposals are not currently open for submission.</p>
-    {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <div class="alert alert-danger">Proposals are not currently open for submission.</div>
+  {% endif %}
 {% endblock %}
