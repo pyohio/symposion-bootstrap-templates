@@ -6,7 +6,7 @@ setup(
     name="symposion-bootstrap-templates",
     author="Christopher Neugebauer",
     author_email="_@chrisjrn.com",
-    version=registrasion.__version__,
+    version=0.0.1,
     description="Default templates for Symposion",
     url="http://github.com/chrisjrn/symposion-bootstrap-templates/",
     packages=find_packages(),
