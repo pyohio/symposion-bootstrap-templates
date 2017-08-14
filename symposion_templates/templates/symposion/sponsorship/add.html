@@ -1,14 +1,15 @@
-{% extends "site_base.html" %}
+{% extends "symposion/base.html" %}
 
 {% load bootstrap %}
 {% load i18n %}
 {% load pinax_boxes_tags %}
 
 {% block head_title %}{% trans "Add a Sponsor" %}{% endblock %}
+{% block heading %}{% trans "Add a Sponsor" %}{% endblock %}
 
 {% block body_class %}sponsorships{% endblock %}
 
-{% block body %}
+{% block content %}
     <form method="POST" action="{% url "sponsor_add" %}" class="form-horizontal">
         {% csrf_token %}
         <legend>{% trans "Add a Sponsor" %}</legend>

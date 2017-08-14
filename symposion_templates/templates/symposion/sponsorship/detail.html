@@ -1,15 +1,12 @@
-{% extends "site_base.html" %}
+{% extends "symposion/base.html" %}
 
 {% load bootstrap %}
 {% load i18n %}
 
 {% block head_title %}{{ sponsor }}{% endblock %}
+{% block heading %}{{ sponsor.name }} ({{ sponsor.level }}){% endblock %}
 
-{% block page_title %}{% trans "Sponsorship" %}{% endblock %}
-
-{% block body %}
-    <h2>{{ sponsor.name }} ({{ sponsor.level }})</h2>
-
+{% block content %}
     <form enctype="multipart/form-data" method="POST" action="" class="form-horizontal">
         {% csrf_token %}
         <fieldset>
