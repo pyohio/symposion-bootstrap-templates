@@ -60,22 +60,25 @@
                     <h3 class="panel-title">{{ section }}</h3>
                 </div>
                 <div class="list-group">
-                        <a class="list-group-item review-list" href="{% url "review_section" section.section.slug %}">
-                            {% trans "All Reviews" %}
-                        </a>
-                        {% comment %}
-                        <li>
-                            <a href="{% url "review_section_assignments" section.section.slug %}">
-                                {% trans "Your Assignments" %}
-                            </a>
-                        </li>
-                        {% endcomment %}
-                        <a class="list-group-item voting-status" href="{% url "review_status" section.section.slug %}">
-                            {% trans "Voting Status" %}
-                        </a>
-                        {% if request.user.is_staff %}
-                            <a class="list-group-item review-results" href="{% url "result_notification" section.section.slug 'accepted' %}">Result Notification</a>
-                        {% endif %}
+                  <a class="list-group-item review-list" href="{% url "review_section" section.section.slug %}">
+                      {% trans "All Reviews" %}
+                  </a>
+                  <a class="list-group-item review-list" href="{% url "user_not_reviewed" section.section.slug %}">
+                      {% trans "Unreviewed By You" %}
+                  </a>
+                  {% comment %}
+                  <li>
+                      <a href="{% url "review_section_assignments" section.section.slug %}">
+                          {% trans "Your Assignments" %}
+                      </a>
+                  </li>
+                  {% endcomment %}
+                  <a class="list-group-item voting-status" href="{% url "review_status" section.section.slug %}">
+                      {% trans "Voting Status" %}
+                  </a>
+                  {% if request.user.is_staff %}
+                      <a class="list-group-item review-results" href="{% url "result_notification" section.section.slug 'accepted' %}">Result Notification</a>
+                  {% endif %}
                 </div>
             {% endfor %}
             {% endblock %}
