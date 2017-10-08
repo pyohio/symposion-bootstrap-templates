@@ -6,10 +6,11 @@
         <th>{% trans "Speaker / Title" %}</th>
         <th>{% trans "Category" %}</th>
         <th><i class="fa fa-comment-alt"></i></th>
-        <th>{% trans "+1" %}</th>
-        <th>{% trans "+0" %}</th>
-        <th>{% trans "-0" %}</th>
-        <th>{% trans "-1" %}</th>
+        <th>{% trans "++" %}</th>
+        <th>{% trans "+" %}</th>
+        <th>{% trans "--" %}</th>
+        <th>{% trans "--" %}</th>
+        <th>{% trans "Score" %}</th>
         <th><a href="#" class="tip" title="{% trans "Your Rating" %}"><i class="fa fa-user"></i></a></th>
     </thead>
 
@@ -26,10 +27,11 @@
                 </td>
                 <td>{{ proposal.track }}</td>
                 <td>{{ proposal.comment_count }}</td>
-                <td>{{ proposal.plus_one }}</td>
-                <td>{{ proposal.plus_zero }}</td>
-                <td>{{ proposal.minus_zero }}</td>
-                <td>{{ proposal.minus_one }}</td>
+                <td>{{ proposal.strong_accept }}</td>
+                <td>{{ proposal.weak_accept }}</td>
+                <td>{{ proposal.weak_reject }}</td>
+                <td>{{ proposal.strong_reject }}</td>
+                <td>{{ proposal.score }}</td>
                 <td>{{ proposal.user_vote|default:"" }}</td>
             </tr>
         {% endfor %}
