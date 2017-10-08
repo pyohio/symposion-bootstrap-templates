@@ -10,7 +10,6 @@
         <th>{% trans "+" %}</th>
         <th>{% trans "-" %}</th>
         <th>{% trans "--" %}</th>
-        <th>{% trans "Score" %}</th>
         <th><a href="#" class="tip" title="{% trans "Your Rating" %}"><i class="fa fa-user"></i></a></th>
     </thead>
 
@@ -31,7 +30,6 @@
                 <td>{{ proposal.weak_accept }}</td>
                 <td>{{ proposal.weak_reject }}</td>
                 <td>{{ proposal.strong_reject }}</td>
-                <td>{{ proposal.score }}</td>
                 <td>{{ proposal.user_vote|default:"" }}</td>
             </tr>
         {% endfor %}
