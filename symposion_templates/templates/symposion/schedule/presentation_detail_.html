@@ -1,0 +1,63 @@
+{% extends "symposion/base.html" %}
+
+{% load sitetree %}
+
+{% block title %}Presentation: {{ presentation.title }}{% endblock %}
+{% block heading %}
+  {{ presentation.title }}
+  <br>
+  <small>
+    By
+    {% for speaker in presentation.speakers %}
+      {{ speaker }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+  </small>
+{% endblock %}
+
+{% block breadcrumbs %}{% sitetree_breadcrumbs from "main" %}{% endblock %}
+
+{% block lede %}
+  {% if presentation.description %}
+    {% block description %}
+      {{ presentation.description }}
+    {% endblock description %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if presentation.slot %}
+    <h4>
+      {{ presentation.slot.day.date|date:"l" }}
+      {{ presentation.slot.start}}&ndash;{{ presentation.slot.end }}
+    </h4>
+  {% endif %}
+
+  {% if presentation.proposal.get_audience_level_display %}
+    <dl class="dl-horizontal">
+      <dt>Audience level:</dt>
+      <dd style="margin-bottom: 0;">{{ presentation.proposal.get_audience_level_display }}</dd>
+    </dl>
+  {% endif %}
+
+  {% block abstract_outer %}
+    {% if presentation.abstract %}
+      <div class="abstract">
+        {% block abstract %}
+          {{ presentation.abstract|safe }}
+        {% endblock %}
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  {% block speakers_outer %}
+    {% for speaker in presentation.speakers %}
+      {% block speaker %}
+        <h2>{{ speaker.name }}</h2>
+        <div class="bio">
+          {{ speaker.biography_html|safe }}
+        </div>
+      {% endblock %}
+    {% endfor %}
+  {% endblock %}
+
+{% endblock %}
