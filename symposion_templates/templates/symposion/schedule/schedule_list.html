@@ -1,4 +1,4 @@
-{% extends "site_base.html" %}
+{% extends "symposion/base.html" %}
 
 {% load i18n %}
 {% load cache %}
@@ -27,7 +27,7 @@
 
 {% block breadcrumbs %}{% sitetree_breadcrumbs from "main" %}{% endblock %}
 
-{% block body %}
+{% block content %}
     <h2>Accepted {{ schedule.section.name }}</h2>
     {% cache 600 "schedule-list" schedule.section.name %}
         {% for presentation in presentations %}

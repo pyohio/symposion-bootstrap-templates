@@ -1,4 +1,4 @@
-{% extends "site_base.html" %}
+{% extends "symposion/base.html" %}
 
 {% load i18n %}
 
@@ -13,9 +13,12 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}chosen/chosen.css" />
 {% endblock %}
 
-{% block body_outer %}
-    <h1>Schedule Edit</h1>
+{% block heading %}
+Schedule Edit
+{% endblock %}
 
+
+{% block content %}
     {% for timetable in days %}
         <h2>{{ timetable.day.date }}</h2>
         {% include "symposion/schedule/_edit_grid.html" %}

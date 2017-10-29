@@ -1,4 +1,4 @@
-{% extends "site_base.html" %}
+{% extends "symposion/base.html" %}
 
 {% load i18n %}
 {% load pinax_boxes_tags %}
@@ -11,9 +11,12 @@
 {% block right %}
 {% endblock %}
 
-{% block body_outer %}
+{% block title %}
+  Conference Schedule
+{% endblock %}
+
+{% block content %}
     <div class="page-head">
-        <h1>Conference Schedule</h1>
         {% block breadcrumbs %}{% endblock %}
     </div>
     {% box "schedule_top" %}
