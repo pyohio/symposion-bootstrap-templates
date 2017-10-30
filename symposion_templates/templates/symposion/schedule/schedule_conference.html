@@ -19,7 +19,6 @@
     <div class="page-head">
         {% block breadcrumbs %}{% endblock %}
     </div>
-    {% box "schedule_top" %}
 
     {% for section in sections %}
         {% cache 600 "schedule-table" section.schedule.section %}
