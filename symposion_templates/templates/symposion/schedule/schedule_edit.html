@@ -28,7 +28,7 @@ Schedule Edit
         <input type="submit" name="submit" value="Submit" />
         <input type="submit" id="delete" name="delete" value="Delete Schedule" />
     </form>
-    <div class="modal fade hide in" id="slotEditModal"></div>
+    <div class="modal fade in" style="background: white;" id="slotEditModal"></div>
 {% endblock %}
 
 {% block extra_script %}
@@ -40,7 +40,7 @@ Schedule Edit
                     $("#id_presentation").chosen();
                     $("#slotEditModal").modal("show");
                 });
-                e.preventDefault();
+                //e.preventDefault();
             });
         });
         $(function() {
