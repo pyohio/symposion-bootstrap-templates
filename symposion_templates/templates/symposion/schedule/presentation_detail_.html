@@ -19,7 +19,7 @@
 {% block lede %}
   {% if presentation.description %}
     {% block description %}
-      {{ presentation.description }}
+      {{ presentation.description_html }}
     {% endblock description %}
   {% endif %}
 {% endblock %}
@@ -43,7 +43,7 @@
     {% if presentation.abstract %}
       <div class="abstract">
         {% block abstract %}
-          {{ presentation.abstract|safe }}
+          {{ presentation.abstract_html|safe }}
         {% endblock %}
       </div>
     {% endif %}
