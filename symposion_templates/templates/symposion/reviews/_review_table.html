@@ -4,8 +4,8 @@
     <thead>
         <th>#</th>
         <th>{% trans "Speaker / Title" %}</th>
-        <th>{% trans "Category" %}</th>
-        <th><i class="fa fa-comment-alt"></i></th>
+        <th>{% trans "Comments" %}</th>
+        <th>{% trans "Votes" %}</th>
         <th>{% trans "++" %}</th>
         <th>{% trans "+" %}</th>
         <th>{% trans "-" %}</th>
@@ -24,8 +24,8 @@
                         {{ proposal.title }}
                     </a>
                 </td>
-                <td>{{ proposal.track }}</td>
                 <td>{{ proposal.comment_count }}</td>
+                <td>{{ proposal.total_votes }}</td>
                 <td>{{ proposal.strong_accept }}</td>
                 <td>{{ proposal.weak_accept }}</td>
                 <td>{{ proposal.weak_reject }}</td>
