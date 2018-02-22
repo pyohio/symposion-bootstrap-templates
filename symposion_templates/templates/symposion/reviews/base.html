@@ -91,6 +91,7 @@
         $(function() {
             $(".tip").tooltip();
             $("table.table-reviews").dataTable({
+                "aaSorting": [[4, "asc" ], [0, "asc"]],
                 "sDom": "<'row'<'col-md-3'l><'col-md-3'T><'col-md-4'f>r>t<'row'<'col-md-3'i><'col-md-5'p>>",
                 "sPaginationType": "bootstrap",
                 "bStateSave": true,
