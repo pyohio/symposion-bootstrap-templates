@@ -57,7 +57,8 @@
         </div>
     {% endif %}
 
-    <h3>#{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker }})</h3>
+    <h3>#{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker }})
+        {% if proposal.cancelled %}<span class="label label-danger">Cancelled</span>{% endif %}</h3>
 
     <div class="tabbable">
         <ul class="nav nav-tabs">
