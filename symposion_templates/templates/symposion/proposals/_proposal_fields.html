@@ -4,8 +4,10 @@
     <dt>{% trans "Submitted by" %}</dt>
     <dd>{{ proposal.speaker }}</dd>
 
+    {% if proposal.track %}
     <dt>{% trans "Track" %}</dt>
     <dd>{{ proposal.track }}&nbsp;</dd>
+    {% endif %}
 
     <dt>{% trans "Audience Level" %}</dt>
     <dd>{{ proposal.get_audience_level_display }}&nbsp;</dd>

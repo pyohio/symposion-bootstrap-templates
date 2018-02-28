@@ -5,7 +5,13 @@
 {% load bootstrap %}
 
 {% block head_title %}{{ proposal.title }}{% endblock %}
-{% block heading %}#{{ proposal.number }}: {{ proposal.title }} ({{ proposal.speaker }}, Track: {{ proposal.track }}){% endblock %}
+{% block heading %}#{{ proposal.number }}: {{ proposal.title }}
+    {% if proposal.track %}
+        ({{ proposal.speaker }}, Track: {{ proposal.track }})
+    {% else %}
+        ({{ proposal.speaker }})
+    {% endif %}
+{% endblock %}
 
 {% block content %}
   <div class="pull-right">
