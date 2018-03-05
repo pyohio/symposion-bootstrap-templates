@@ -18,10 +18,10 @@
     {% if not proposal.cancelled %}
         {% if request.user == proposal.speaker.user %}
             <a href="{% url "proposal_edit" proposal.pk %}" class="btn btn-default">
-                {% trans "Edit this proposal" %}
+                {% trans "Edit proposal" %}
             </a>
             <a href="{% url "proposal_cancel" proposal.pk %}" class="btn btn-default">
-                {% trans "Cancel this proposal" %}
+                {% trans "Cancel proposal" %}
             </a>
         {% else %}
             <a href="{% url "proposal_leave" proposal.pk %}" class="btn btn-default">
