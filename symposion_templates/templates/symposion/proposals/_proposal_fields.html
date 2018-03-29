@@ -45,7 +45,7 @@
             <table class="table table-striped">
                 {% for document in proposal.supporting_documents.all %}
                     <tr>
-                        <td><a href="{{ document.download_url }}">{{ document.description }}</a></td>
+                        <td><a href="{{ document.file.url }}">{{ document.description }}</a></td>
                         <td>
                         <form style="margin: 0;" method="post" action="{% url "proposal_document_delete" document.pk %}">
                             {% csrf_token %}
