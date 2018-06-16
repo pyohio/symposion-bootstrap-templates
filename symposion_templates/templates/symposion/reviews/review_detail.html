@@ -62,13 +62,28 @@
 
     <div class="tabbable">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#proposal-detail" data-toggle="tab">{% trans "Proposal Details" %}</a></li>
+            <li class="active"><a href="#proposal-detail" data-toggle="tab">test{% trans "Proposal Details" %}</a></li>
             <li><a href="#proposal-reviews" data-toggle="tab">{% trans "Reviews" %} <span class="badge">{{ reviews|length }}</span></a></li>
             <li><a href="#proposal-feedback" data-toggle="tab">{% trans "Speaker Feedback" %} <span class="badge">{{ proposal.messages.all|length }}</span></a></li>
+            <li><a href="#proposal-updates" data-toggle="tab">Updates</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="proposal-detail">
                 {% include "symposion/proposals/_proposal_fields.html" %}
+            </div>
+            <div class="tab-pane" id="proposal-updates">
+                {% if proposal_changes.title_diff %}
+                <h4>Title</h4>
+                {{ proposal_changes.title_diff|safe }}
+                {% endif %}
+                {% if proposal_changes.abstract_diff %}
+                <h4>Abstract</h4>
+                {{ proposal_changes.abstract_diff|safe }}
+                {% endif %}
+                 {% if proposal_changes.description_diff %}
+                <h4>Description</h4>
+                {{ proposal_changes.description_diff|safe }}
+                {% endif %}
             </div>
             <div class="tab-pane" id="proposal-reviews">
 
