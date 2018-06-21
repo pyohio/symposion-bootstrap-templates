@@ -62,7 +62,7 @@
 
     <div class="tabbable">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#proposal-detail" data-toggle="tab">test{% trans "Proposal Details" %}</a></li>
+            <li class="active"><a href="#proposal-detail" data-toggle="tab">{% trans "Proposal Details" %}</a></li>
             <li><a href="#proposal-reviews" data-toggle="tab">{% trans "Reviews" %} <span class="badge">{{ reviews|length }}</span></a></li>
             <li><a href="#proposal-feedback" data-toggle="tab">{% trans "Speaker Feedback" %} <span class="badge">{{ proposal.messages.all|length }}</span></a></li>
             <li><a href="#proposal-updates" data-toggle="tab">Updates</a></li>
@@ -72,18 +72,38 @@
                 {% include "symposion/proposals/_proposal_fields.html" %}
             </div>
             <div class="tab-pane" id="proposal-updates">
-                {% if proposal_changes.title_diff %}
+                <form class="result-form form-inline" method="POST" action="">
+                {% csrf_token %}
                 <h4>Title</h4>
+                {% if proposal_changes.title_diff %}
                 {{ proposal_changes.title_diff|safe }}
+                <input type="submit" name="update_title" value="Apply" class="btn btn-success" />
+                <input type="submit" name="update_title" value="Reject" class="btn btn-danger" />
+                {% else %}
+                <p>No changes</p>
                 {% endif %}
-                {% if proposal_changes.abstract_diff %}
-                <h4>Abstract</h4>
-                {{ proposal_changes.abstract_diff|safe }}
-                {% endif %}
-                 {% if proposal_changes.description_diff %}
                 <h4>Description</h4>
+                {% if proposal_changes.description_diff %}
                 {{ proposal_changes.description_diff|safe }}
+                <input type="submit" name="update_description" value="Apply" class="btn btn-success" />
+                <input type="submit" name="update_description" value="Reject" class="btn btn-danger" />
+                {% else %}
+                <p>No changes</p>
                 {% endif %}
+                <h4>Abstract</h4>
+                {% if proposal_changes.abstract_diff %}
+                {{ proposal_changes.abstract_diff|safe }}
+                <input type="submit" name="update_abstract" value="Apply" class="btn btn-success" />
+                <input type="submit" name="update_abstract" value="Reject" class="btn btn-danger" />
+                {% else %}
+                <p>No changes</p>
+                {% endif %}
+                </form>
+                <h4>Admin Links</h4>
+                <ul>
+                    <li><a href="/2018/admin/proposals/talkproposal/{{ proposal.pk }}/change">Proposal</a></li>
+                    <li><a href="/2018/admin/symposion_schedule/presentation/{{ proposal.presentation.pk }}/change">Presentation</a></li>
+                </ul>
             </div>
             <div class="tab-pane" id="proposal-reviews">
 
@@ -202,5 +222,15 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        var url = document.location.toString();
+if (url.match('#')) {
+    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+} 
+
+// Change hash for page-reload
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+})</script>
 
 {% endblock %}
