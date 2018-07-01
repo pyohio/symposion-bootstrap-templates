@@ -28,7 +28,7 @@
 {% block breadcrumbs %}{% sitetree_breadcrumbs from "main" %}{% endblock %}
 
 {% block content %}
-    <h2>Accepted {{ schedule.section.name }}</h2>
+    <h2>{{ schedule.section.name }} List</h2>
     {% cache schedule_cache_ttl "schedule-list" schedule.section.name %}
         {% for presentation in presentations %}
             <div class="row">

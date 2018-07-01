@@ -29,7 +29,9 @@
     <h4>
       {{ presentation.slot.day.date|date:"l" }}
       {{ presentation.slot.start}}&ndash;{{ presentation.slot.end }}
-    </h4>
+      in
+      {{ presentation.slot.rooms|join:", " }}
+     </h4>
   {% endif %}
 
   {% if presentation.proposal.get_audience_level_display %}
