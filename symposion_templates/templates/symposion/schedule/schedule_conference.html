@@ -23,7 +23,7 @@
     {% for section in sections %}
         {% cache schedule_cache_ttl "schedule-table" section.schedule.section %}
             {% for timetable in section.days %}
-                <h3>{{ section.schedule.section.name }} — {{ timetable.day.date|date:"l, F j, Y" }}</h3>
+                <h2>{{ section.schedule.section.name }} — {{ timetable.day.date|date:"l, F j, Y" }}</h2>
                 {% include "symposion/schedule/_grid.html" %}
             {% endfor %}
         {% endcache %}
