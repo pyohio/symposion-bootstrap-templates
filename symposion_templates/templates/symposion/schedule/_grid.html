@@ -1,7 +1,7 @@
 <table class="calendar table table-bordered">
     <thead>
         <tr>
-            <th class="time">&nbsp;</th>
+            <th class="time" scope="col">&nbsp;</th>
             {% for room in timetable.rooms %}
                 <th scope="col">{{ room.name }}</th>
             {% endfor %}
