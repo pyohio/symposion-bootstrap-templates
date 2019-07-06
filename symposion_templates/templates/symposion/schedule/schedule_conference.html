@@ -21,12 +21,46 @@
     </div>
     
     {% cache schedule_cache_ttl "schedule-table" %}
-        {% for section in sections %}
-            {% for timetable in section.days %}
+        {% for day in day_timetables|dictsort:"date" %}
+        <h2>{{ day.date|date:"l, F j, Y" }}</h2>
+        {% if day.other %}
+            {% for slot in day.other.slots %}
+            <div>
+                <p><strong>{{slot.title_override}}</strong> -
+                {{ slot.start|time:"g:iA"|lower }} - {{slot.end|time:"g:iA"|lower }} in {{ slot.room_names }}</p>
+                <p>{{ slot.content_override_html|safe }}</p>
+            </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% if day.talks %}
+            <h3>{{ day.date|date:"l" }} Talks & Tutorials</h3>
+            {% include "symposion/schedule/_grid.html" with timetable=day.talks.timetable %}
+        {% endif %}
+
+        {% if day.off_site %}
+        <h3>{{ day.date|date:"l" }} Off-Site Events</h3>
+            {% for slot in day.off_site.slots %}
+            <div>
+                <p><strong>{{slot.title_override}}</strong> -
+                {{ slot.start|time:"g:iA"|lower }} - {{slot.end|time:"g:iA"|lower }}</p>
+                <p>{{ slot.content_override_html|safe }}</p>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endfor %}
+
+
+        {% if False %}
+            <!-- {% for timetable in section.days %} -->
+                {% if section.schedule.section.slug == 'talks' %}
                 <h2>{{ section.schedule.section.name }} — {{ timetable.day.date|date:"l, F j, Y" }}</h2>
                 {% include "symposion/schedule/_grid.html" %}
-            {% endfor %}
-        {% endfor %}
+                {% else %}
+                <p>not talks: {{section.schedule.section.slug}}</p>
+                {% endif %}
+            <!-- {% endfor %} -->
+        {% endif %}
     {% endcache %}
 
 {% endblock %}
