@@ -13,7 +13,7 @@
                 <td class="time">{{ row.time|date:"h:iA"|lower }}</td>
                 {% for slot in row.slots %}
                     <td class="slot slot-{{ slot.kind.label }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
-                        {% if slot.kind.label == "talk" or slot.kind.label == "tutorial" %}
+                        {% if slot.kind.label in "talk tutorial keynote" %}
                             {% if not slot.content %}
                             {% else %}
                                 <span class="title">
@@ -22,7 +22,12 @@
                                 <span class="speaker">
                                     {{ slot.content.speakers|join:", " }}
                                 </span>
+                                {% if slot.kind.label == "tutorial" %}
+                                <p>(requires registration)</p>
+                                {% endif %}
                             {% endif %}
+                        {% elif slot.kind.label == "nothing" %}
+                            <p>&nbsp;</p>
                         {% else %}
                             {% if slot.title_override %}
                                 {{ slot.title_override }}
